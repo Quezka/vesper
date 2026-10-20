@@ -58,4 +58,19 @@
     <string name="clock_close">Close</string>
     <string name="clock_settings">Settings</string>
     <string name="tile_label">Clock</string>
+
+    <string name="sec_quire">Quire</string>
+    <string name="quire_show">Show my Quire schedule</string>
+    <string name="quire_show_hint">Next class or shift, what starts tomorrow, open tasks and the focus timer. Needs Quire on this phone.</string>
+    <string name="quire_missing">Quire is not installed on this phone.</string>
+    <string name="quire_allow">Allow Vesper to read Quire</string>
+    <string name="quire_focus">Focus</string>
+    <string name="quire_break">Break</string>
+    <string name="quire_now">Now: %1$s · until %2$s</string>
+    <string name="quire_in">in %1$s</string>
+    <string name="quire_tomorrow">Tomorrow %1$s · %2$s</string>
+    <string name="quire_tasks">Due: %1$d today · %2$d tomorrow</string>
+    <string name="dur_m">%1$d min</string>
+    <string name="dur_h">%1$d h</string>
+    <string name="dur_hm">%1$d h %2$d min</string>
 </resources>

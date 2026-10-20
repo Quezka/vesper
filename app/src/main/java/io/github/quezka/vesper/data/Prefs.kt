@@ -27,6 +27,11 @@ class Prefs(context: Context) {
         get() = sp.getBoolean("nightTint", false)
         set(v) = sp.edit { putBoolean("nightTint", v) }
 
+    /** Show Quire's schedule (next class or shift, tomorrow's start, tasks, focus timer) on the clock. */
+    var showQuire: Boolean
+        get() = sp.getBoolean("showQuire", true)
+        set(v) = sp.edit { putBoolean("showQuire", v) }
+
     var showNotices: Boolean
         get() = sp.getBoolean("showNotices", true)
         set(v) = sp.edit { putBoolean("showNotices", v) }

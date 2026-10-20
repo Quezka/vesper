@@ -30,6 +30,7 @@ import io.github.quezka.vesper.service.PowerWatcher
 /** Settings, permissions and updates. The clock itself lives in [ClockActivity]. */
 class MainActivity : ComponentActivity() {
     private val askPost = registerForActivityResult(ActivityResultContracts.RequestPermission()) { refresh.intValue++ }
+    private val askQuire = registerForActivityResult(ActivityResultContracts.RequestPermission()) { refresh.intValue++ }
     private val refresh = mutableIntStateOf(0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +47,7 @@ class MainActivity : ComponentActivity() {
                     prefs = prefs,
                     permissions = remember(refresh.intValue) { permissionStates(this) },
                     onAskPostNotifications = { askPost.launch(Manifest.permission.POST_NOTIFICATIONS) },
+                    onAskQuire = { askQuire.launch(io.github.quezka.vesper.data.QuireLink.PERMISSION) },
                     onOpen = { startActivity(it) },
                     onAutoStartChanged = { on -> if (on) PowerWatcher.start(this) else PowerWatcher.stop(this) },
                     onPreview = { ClockLauncher.open(this) },

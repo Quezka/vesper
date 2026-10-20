@@ -58,4 +58,19 @@
     <string name="clock_close">Закрыть</string>
     <string name="clock_settings">Настройки</string>
     <string name="tile_label">Часы</string>
+
+    <string name="sec_quire">Quire</string>
+    <string name="quire_show">Показывать моё расписание из Quire</string>
+    <string name="quire_show_hint">Ближайшая пара или смена, что начинается завтра, открытые задачи и таймер фокуса. Нужен Quire на этом телефоне.</string>
+    <string name="quire_missing">Quire не установлен на этом телефоне.</string>
+    <string name="quire_allow">Разрешить Vesper читать Quire</string>
+    <string name="quire_focus">Фокус</string>
+    <string name="quire_break">Перерыв</string>
+    <string name="quire_now">Сейчас: %1$s · до %2$s</string>
+    <string name="quire_in">через %1$s</string>
+    <string name="quire_tomorrow">Завтра %1$s · %2$s</string>
+    <string name="quire_tasks">Сроки: %1$d сегодня · %2$d завтра</string>
+    <string name="dur_m">%1$d мин</string>
+    <string name="dur_h">%1$d ч</string>
+    <string name="dur_hm">%1$d ч %2$d мин</string>
 </resources>

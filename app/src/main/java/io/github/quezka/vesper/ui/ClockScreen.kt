@@ -54,6 +54,10 @@ import io.github.quezka.vesper.R
 import androidx.compose.ui.graphics.ImageBitmap
 import io.github.quezka.vesper.data.AppIcons
 import io.github.quezka.vesper.data.Prefs
+import io.github.quezka.vesper.data.QuireLink
+import io.github.quezka.vesper.domain.NextLine
+import io.github.quezka.vesper.domain.QuireFeed
+import io.github.quezka.vesper.domain.QuireView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import io.github.quezka.vesper.domain.AppDigest
@@ -94,6 +98,25 @@ fun ClockScreen(
             now = LocalDateTime.now()
             val intoStep = if (seconds) now.nano / 1_000_000L else now.second * 1000L + now.nano / 1_000_000L
             delay(((if (seconds) 1000L else 60_000L) - intoStep).coerceAtLeast(50L))
+        }
+    }
+
+    // Quire's schedule, read from its provider every half minute while the clock is up.
+    val quire by produceState<QuireFeed?>(null) {
+        if (!prefs.showQuire) return@produceState
+        while (true) {
+            val ok = withContext(Dispatchers.IO) { QuireLink.read(context) } as? QuireLink.Result.Ok
+            value = ok?.feed
+            delay(if (ok != null) 30_000 else 5_000) // Quire may still be starting: ask again soon
+        }
+    }
+    // The focus timer needs a tick every second while it runs.
+    var focusNow by remember { mutableStateOf(System.currentTimeMillis()) }
+    val focusRunning = quire?.focus != null
+    LaunchedEffect(focusRunning) {
+        while (focusRunning) {
+            focusNow = System.currentTimeMillis()
+            delay(1000)
         }
     }
 
@@ -151,6 +174,7 @@ fun ClockScreen(
                     fontSize = (timeSize.value / 8).coerceIn(14f, 28f).sp,
                     textAlign = TextAlign.Center,
                 )
+                quire?.let { QuireLines(it, now.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli(), focusNow, ink, soft, locale) }
             }
         }
 
@@ -195,6 +219,60 @@ fun ClockScreen(
                 Pill(stringResource(R.string.clock_settings), onSettings)
                 Pill(stringResource(R.string.clock_close), onClose)
             }
+        }
+    }
+}
+
+/** Quire's part of the clock: the focus timer, what is on now or next, tomorrow's start and the open tasks. */
+@Composable
+private fun QuireLines(feed: QuireFeed, nowMs: Long, focusNowMs: Long, ink: Color, soft: Color, locale: Locale) {
+    val zone = ZoneId.systemDefault()
+    @Composable
+    fun duration(minutes: Long): String {
+        val (h, m) = QuireView.split(minutes)
+        return when {
+            h == 0L -> stringResource(R.string.dur_m, m)
+            m == 0L -> stringResource(R.string.dur_h, h)
+            else -> stringResource(R.string.dur_hm, h, m)
+        }
+    }
+    val lines = mutableListOf<@Composable () -> Unit>()
+
+    QuireView.focusLeftMs(feed, focusNowMs)?.let { left ->
+        val secs = left / 1000
+        val clock = "%d:%02d".format(secs / 60, secs % 60)
+        val label = stringResource(if (feed.focus?.phase == "work") R.string.quire_focus else R.string.quire_break)
+        lines += { Text("$label · $clock", color = ink, fontSize = 20.sp, fontWeight = FontWeight.SemiBold) }
+        feed.focus?.label?.let { l -> lines += { Text(l, color = soft, fontSize = 13.sp, maxLines = 1, overflow = TextOverflow.Ellipsis) } }
+    }
+
+    when (val n = QuireView.nextLine(feed, nowMs)) {
+        is NextLine.Running -> {
+            val until = shortTime(n.endMs, zone, locale)
+            lines += { Text(stringResource(R.string.quire_now, n.title, until), color = ink, fontSize = 16.sp, maxLines = 1, overflow = TextOverflow.Ellipsis) }
+        }
+        is NextLine.Soon -> {
+            val at = shortTime(n.startMs, zone, locale)
+            lines += { Text("${n.title} · $at", color = ink, fontSize = 16.sp, maxLines = 1, overflow = TextOverflow.Ellipsis) }
+            lines += { Text(stringResource(R.string.quire_in, duration(n.minutes)), color = soft, fontSize = 13.sp) }
+        }
+        null -> {}
+    }
+
+    QuireView.tomorrow(feed, nowMs)?.let { t ->
+        val at = shortTime(t.startMs, zone, locale)
+        lines += { Text(stringResource(R.string.quire_tomorrow, at, t.title), color = soft, fontSize = 15.sp, maxLines = 1, overflow = TextOverflow.Ellipsis) }
+    }
+
+    if (feed.tasksToday + feed.tasksTomorrow > 0) {
+        lines += { Text(stringResource(R.string.quire_tasks, feed.tasksToday, feed.tasksTomorrow), color = soft, fontSize = 15.sp) }
+        feed.taskTitle?.let { t -> lines += { Text(t, color = soft, fontSize = 13.sp, maxLines = 1, overflow = TextOverflow.Ellipsis) } }
+    }
+
+    if (lines.isNotEmpty()) {
+        Spacer(Modifier.height(16.dp))
+        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            lines.forEach { it() }
         }
     }
 }

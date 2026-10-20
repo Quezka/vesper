@@ -8,6 +8,13 @@ the date, the battery and the notifications that came in. Same look as Quire (in
   updater, `service/` the charger watcher and the notification reader, `ui/` the two screens.
 - English, Russian and Italian; a test checks that every string exists in all three.
 
+## Quire
+
+With Quire (the planner, `github.com/Quezka/quire`, version 0.33 or newer) on the same phone, the clock also shows the
+focus timer, what is on now or next, what starts tomorrow and the tasks due. Quire exposes it through a read-only content
+provider behind a runtime permission (contract: Quire's `docs/bedside.md`, mirrored here in `domain/QuireFeed.kt` and
+`data/QuireLink.kt`). Nothing goes through the cloud.
+
 ## Build
 
 ```

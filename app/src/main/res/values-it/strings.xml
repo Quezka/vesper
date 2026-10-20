@@ -58,4 +58,19 @@
     <string name="clock_close">Chiudi</string>
     <string name="clock_settings">Impostazioni</string>
     <string name="tile_label">Orologio</string>
+
+    <string name="sec_quire">Quire</string>
+    <string name="quire_show">Mostra il mio programma di Quire</string>
+    <string name="quire_show_hint">Prossima lezione o turno, cosa inizia domani, attività aperte e timer di concentrazione. Serve Quire su questo telefono.</string>
+    <string name="quire_missing">Quire non è installato su questo telefono.</string>
+    <string name="quire_allow">Consenti a Vesper di leggere Quire</string>
+    <string name="quire_focus">Concentrazione</string>
+    <string name="quire_break">Pausa</string>
+    <string name="quire_now">Ora: %1$s · fino alle %2$s</string>
+    <string name="quire_in">tra %1$s</string>
+    <string name="quire_tomorrow">Domani %1$s · %2$s</string>
+    <string name="quire_tasks">Scadenze: %1$d oggi · %2$d domani</string>
+    <string name="dur_m">%1$d min</string>
+    <string name="dur_h">%1$d h</string>
+    <string name="dur_hm">%1$d h %2$d min</string>
 </resources>

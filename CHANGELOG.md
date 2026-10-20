@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.0] - 2026-10-20
+- **Quire on the clock.** With Quire 0.33 or newer on the same phone, the clock shows the focus timer while it runs,
+  what is on now or comes next (with a countdown), what starts tomorrow, and how many tasks are due. Allow it once in
+  Vesper's settings (Quire section); it is read on the phone only and never includes grades.
+
 ## [0.2.0] - 2026-10-20
 - The notification list scrolls (up to 30 apps instead of 5).
 - Notifications show the app's launcher icon.

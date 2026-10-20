@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import io.github.quezka.vesper.BuildConfig
 import io.github.quezka.vesper.R
 import io.github.quezka.vesper.data.Prefs
+import io.github.quezka.vesper.data.QuireLink
 import io.github.quezka.vesper.data.ReleaseFeed
 import io.github.quezka.vesper.data.Updater
 import io.github.quezka.vesper.domain.Release
@@ -64,6 +65,7 @@ fun SettingsScreen(
     prefs: Prefs,
     permissions: List<PermissionState>,
     onAskPostNotifications: () -> Unit,
+    onAskQuire: () -> Unit,
     onOpen: (Intent) -> Unit,
     onAutoStartChanged: (Boolean) -> Unit,
     onPreview: () -> Unit,
@@ -74,6 +76,7 @@ fun SettingsScreen(
     var seconds by remember { mutableStateOf(prefs.seconds) }
     var nightTint by remember { mutableStateOf(prefs.nightTint) }
     var showNotices by remember { mutableStateOf(prefs.showNotices) }
+    var showQuire by remember { mutableStateOf(prefs.showQuire) }
     var brightness by remember { mutableStateOf(prefs.brightness.toFloat()) }
     var hidden by remember { mutableStateOf(prefs.hiddenApps) }
 
@@ -101,6 +104,17 @@ fun SettingsScreen(
                     PermissionRow(title, hint, p.granted) {
                         if (p.grantIntent != null) onOpen(p.grantIntent) else onAskPostNotifications()
                     }
+                }
+            }
+
+            Section(stringResource(R.string.sec_quire)) {
+                SwitchRow(stringResource(R.string.quire_show), stringResource(R.string.quire_show_hint), showQuire) { showQuire = it; prefs.showQuire = it }
+                val quireAllowed = QuireLink.allowed(LocalContext.current)
+                val quireInstalled = QuireLink.installed(LocalContext.current)
+                when {
+                    !quireInstalled -> Text(stringResource(R.string.quire_missing), color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp)
+                    quireAllowed -> Text(stringResource(R.string.perm_on), color = Palette.Success, fontWeight = FontWeight.SemiBold)
+                    else -> Button(onClick = onAskQuire, modifier = Modifier.fillMaxWidth()) { Text(stringResource(R.string.quire_allow)) }
                 }
             }
 

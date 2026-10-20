@@ -21,8 +21,8 @@ android {
         applicationId = "io.github.quezka.vesper"
         minSdk = 26
         targetSdk = 35
-        versionCode = 2
-        versionName = "0.2.0"
+        versionCode = 3
+        versionName = "0.3.0"
         // The release feed the in-app updater reads.
         buildConfigField("String", "UPDATE_REPO", "\"Quezka/vesper\"")
     }
