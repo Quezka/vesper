@@ -6,6 +6,7 @@ import android.content.Context
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import io.github.quezka.vesper.domain.NoticeItem
+import io.github.quezka.vesper.domain.fallbackLabel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -34,7 +35,7 @@ class NoticeFeed : NotificationListenerService() {
         val app = try {
             packageManager.getApplicationLabel(packageManager.getApplicationInfo(sbn.packageName, 0)).toString()
         } catch (e: Exception) {
-            sbn.packageName
+            fallbackLabel(sbn.packageName)
         }
         return NoticeItem(
             key = sbn.key,

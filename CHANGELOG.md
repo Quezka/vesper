@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.0] - 2026-10-20
+- The notification list scrolls (up to 30 apps instead of 5).
+- Notifications show the app's launcher icon.
+- App names that Android hides from other apps (such as YouTube) are read correctly; if one still cannot be read, a readable name is made from the package.
+
 ## [0.1.0] - 2026-10-20
 - First release: a bedside clock that opens when the phone starts charging.
 - Big thin clock, date and battery on a black screen that shifts a few pixels now and then (OLED burn-in).

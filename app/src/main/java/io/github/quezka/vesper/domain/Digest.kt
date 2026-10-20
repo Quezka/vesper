@@ -22,11 +22,15 @@ data class AppDigest(
     val postedAt: Long,
 )
 
+/** A readable name for a package the system would not name: "com.google.android.youtube" -> "Youtube". */
+fun fallbackLabel(packageName: String): String =
+    packageName.substringAfterLast('.').replace('_', ' ').replaceFirstChar { it.titlecase() }.ifBlank { packageName }
+
 /**
  * Notices worth showing: no ongoing ones (media players, downloads), no group summaries, nothing from hidden apps,
  * nothing without text. One row per app, newest first, at most [limit] rows.
  */
-fun digest(items: List<NoticeItem>, hidden: Set<String>, limit: Int = 5): List<AppDigest> =
+fun digest(items: List<NoticeItem>, hidden: Set<String>, limit: Int = 30): List<AppDigest> =
     items.asSequence()
         .filter { !it.ongoing && !it.groupSummary && it.packageName !in hidden && (it.title.isNotBlank() || it.text.isNotBlank()) }
         .groupBy { it.packageName }

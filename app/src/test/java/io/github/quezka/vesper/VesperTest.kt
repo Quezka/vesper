@@ -7,6 +7,7 @@ import io.github.quezka.vesper.domain.Version
 import io.github.quezka.vesper.domain.clockText
 import io.github.quezka.vesper.domain.dateText
 import io.github.quezka.vesper.domain.digest
+import io.github.quezka.vesper.domain.fallbackLabel
 import io.github.quezka.vesper.domain.meridiem
 import io.github.quezka.vesper.domain.newerThan
 import org.junit.Assert.assertEquals
@@ -67,9 +68,16 @@ class VesperTest {
     }
 
     @Test fun digestIsLimited() {
-        val many = (1..9).map { item("app$it", it.toLong()) }
-        assertEquals(5, digest(many, emptySet()).size)
-        assertEquals("app9", digest(many, emptySet()).first().packageName)
+        val many = (1..40).map { item("app$it", it.toLong()) }
+        assertEquals(30, digest(many, emptySet()).size)
+        assertEquals(3, digest(many, emptySet(), limit = 3).size)
+        assertEquals("app40", digest(many, emptySet()).first().packageName)
+    }
+
+    @Test fun unnamedPackagesGetReadableLabels() {
+        assertEquals("Youtube", fallbackLabel("com.google.android.youtube"))
+        assertEquals("Chat app", fallbackLabel("org.example.chat_app"))
+        assertEquals("single", fallbackLabel("single").lowercase())
     }
 
     @Test fun clockTextFormats() {

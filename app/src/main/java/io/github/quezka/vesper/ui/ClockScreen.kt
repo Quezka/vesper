@@ -16,7 +16,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
@@ -30,6 +35,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -45,7 +51,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.quezka.vesper.R
+import androidx.compose.ui.graphics.ImageBitmap
+import io.github.quezka.vesper.data.AppIcons
 import io.github.quezka.vesper.data.Prefs
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import io.github.quezka.vesper.domain.AppDigest
 import io.github.quezka.vesper.domain.NoticeItem
 import io.github.quezka.vesper.domain.clockText
@@ -112,7 +122,8 @@ fun ClockScreen(
             .safeDrawingPadding()
             .padding(horizontal = 24.dp, vertical = 16.dp)
     ) {
-        val landscape = maxWidth > maxHeight
+        val screenHeight = maxHeight
+        val landscape = maxWidth > screenHeight
         val clockWidth = if (landscape && prefs.showNotices) maxWidth * 0.55f else maxWidth
         val em = if (seconds) 4.4f else 2.8f
         val timeSize = (clockWidth.value / em).coerceAtMost(220f).sp
@@ -144,7 +155,7 @@ fun ClockScreen(
         }
 
         val list: @Composable (Modifier) -> Unit = { mod ->
-            Column(mod, verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Column(mod.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 if (rows.isEmpty()) {
                     Text(stringResource(R.string.no_notices), color = Color(0xFF50555E), fontSize = 13.sp, modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center)
                 }
@@ -163,14 +174,14 @@ fun ClockScreen(
                     Box(Modifier.weight(if (prefs.showNotices) 1.15f else 1f), contentAlignment = Alignment.Center) { clock() }
                     if (prefs.showNotices) {
                         Spacer(Modifier.width(24.dp))
-                        list(Modifier.weight(1f).align(Alignment.CenterVertically))
+                        list(Modifier.weight(1f).fillMaxHeight())
                     }
                 }
             } else {
                 Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
                     Box(Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) { clock() }
                     if (prefs.showNotices) {
-                        list(Modifier.fillMaxWidth().padding(bottom = 8.dp))
+                        list(Modifier.fillMaxWidth().heightIn(max = screenHeight * 0.5f).padding(bottom = 8.dp))
                         if (rows.isNotEmpty()) {
                             Text(stringResource(R.string.hold_to_hide), color = Color(0xFF50555E), fontSize = 11.sp, modifier = Modifier.padding(top = 8.dp))
                         }
@@ -204,30 +215,42 @@ private fun BatteryLine(battery: BatteryState, color: Color) {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun NoticeCard(row: AppDigest, locale: Locale, onHide: () -> Unit) {
-    Column(
+    val context = LocalContext.current
+    val icon by produceState<ImageBitmap?>(null, row.packageName) {
+        value = withContext(Dispatchers.IO) { AppIcons.get(context, row.packageName) }
+    }
+    Row(
         Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(14.dp))
             .background(CardBg)
             .border(BorderStroke(1.dp, CardBorder), RoundedCornerShape(14.dp))
             .combinedClickable(onClick = {}, onLongClick = onHide)
-            .padding(horizontal = 14.dp, vertical = 10.dp)
+            .padding(horizontal = 12.dp, vertical = 10.dp),
+        verticalAlignment = Alignment.Top,
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Box(Modifier.size(8.dp).clip(CircleShape).background(Palette.AccentDark))
-            Spacer(Modifier.width(8.dp))
-            Text(
-                row.appName.uppercase(locale) + if (row.count > 1) "  ·  ${row.count}" else "",
-                color = Muted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold, maxLines = 1,
-                overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f),
-            )
-            Text(shortTime(row.postedAt, ZoneId.systemDefault(), locale), color = Muted, fontSize = 11.sp)
+        val bmp = icon
+        if (bmp != null) {
+            Image(bmp, contentDescription = null, modifier = Modifier.size(36.dp).clip(RoundedCornerShape(9.dp)))
+        } else {
+            Box(Modifier.size(36.dp).clip(RoundedCornerShape(9.dp)).background(Color(0xFF202226)))
         }
-        if (row.title.isNotBlank()) {
-            Text(row.title, color = Color(0xFFECEDEF), fontSize = 15.sp, fontWeight = FontWeight.SemiBold, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(top = 4.dp))
-        }
-        if (row.text.isNotBlank()) {
-            Text(row.text, color = Color(0xFFB6BAC2), fontSize = 13.sp, maxLines = 2, overflow = TextOverflow.Ellipsis)
+        Spacer(Modifier.width(12.dp))
+        Column(Modifier.weight(1f)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    row.appName.uppercase(locale) + if (row.count > 1) "  ·  ${row.count}" else "",
+                    color = Muted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold, maxLines = 1,
+                    overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f),
+                )
+                Text(shortTime(row.postedAt, ZoneId.systemDefault(), locale), color = Muted, fontSize = 11.sp)
+            }
+            if (row.title.isNotBlank()) {
+                Text(row.title, color = Color(0xFFECEDEF), fontSize = 15.sp, fontWeight = FontWeight.SemiBold, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.padding(top = 2.dp))
+            }
+            if (row.text.isNotBlank()) {
+                Text(row.text, color = Color(0xFFB6BAC2), fontSize = 13.sp, maxLines = 2, overflow = TextOverflow.Ellipsis)
+            }
         }
     }
 }
