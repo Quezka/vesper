@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vesper</string>
+    <string name="tagline">Прикроватные часы для заряжающегося телефона</string>
+
+    <string name="channel_wait">Ожидание зарядки</string>
+    <string name="channel_charging">Часы при зарядке</string>
+    <string name="waiting_title">Vesper ждёт зарядку</string>
+    <string name="waiting_text">Часы откроются, когда вы подключите зарядное.</string>
+    <string name="charging_title">Зарядка</string>
+    <string name="charging_text">Нажмите, чтобы открыть часы.</string>
+
+    <string name="sec_status">Часы при зарядке</string>
+    <string name="auto_start">Открывать часы, когда начинается зарядка</string>
+    <string name="auto_start_hint">Держит тихое уведомление, чтобы Android позволил Vesper следить за зарядкой.</string>
+    <string name="close_on_unplug">Закрывать при отключении зарядки</string>
+    <string name="preview_now">Показать часы сейчас</string>
+
+    <string name="sec_access">Разрешения</string>
+    <string name="perm_notice_access">Доступ к уведомлениям</string>
+    <string name="perm_notice_access_hint">Показывает ваши уведомления на часах.</string>
+    <string name="perm_overlay">Поверх других приложений</string>
+    <string name="perm_overlay_hint">Часы откроются сами при подключении зарядки.</string>
+    <string name="perm_post">Уведомления</string>
+    <string name="perm_post_hint">Уведомление об ожидании и приглашение при зарядке.</string>
+    <string name="perm_fullscreen">Полноэкранные оповещения</string>
+    <string name="perm_fullscreen_hint">Открывает часы поверх экрана блокировки.</string>
+    <string name="perm_battery">Без ограничений батареи</string>
+    <string name="perm_battery_hint">Не даёт системе выключить слежение за зарядкой.</string>
+    <string name="perm_on">Включено</string>
+    <string name="perm_allow">Разрешить</string>
+
+    <string name="sec_clock">Часы</string>
+    <string name="use24h">24-часовой формат</string>
+    <string name="seconds">Показывать секунды</string>
+    <string name="night_tint">Ночной оттенок</string>
+    <string name="night_tint_hint">Тусклые янтарные цифры, не режут глаза в темноте.</string>
+    <string name="show_notices">Показывать уведомления</string>
+    <string name="brightness">Яркость</string>
+    <string name="hidden_apps_reset">Вернуть скрытые приложения (%d)</string>
+
+    <string name="sec_updates">Обновления</string>
+    <string name="version_fmt">Версия %s</string>
+    <string name="check_updates">Проверить обновления</string>
+    <string name="checking">Проверяю…</string>
+    <string name="up_to_date">У вас последняя версия.</string>
+    <string name="no_releases">Релизов пока нет.</string>
+    <string name="update_available">Доступна версия %s</string>
+    <string name="download_install">Скачать и установить</string>
+    <string name="downloading">Скачивание… %d%%</string>
+    <string name="update_failed">Не удалось связаться с сервером обновлений.</string>
+    <string name="allow_installs">Разрешить установку из Vesper</string>
+
+    <string name="battery_charging">Зарядка</string>
+    <string name="battery_not_charging">От батареи</string>
+    <string name="no_notices">Новых уведомлений нет</string>
+    <string name="hold_to_hide">Удерживайте уведомление, чтобы скрыть приложение</string>
+    <string name="clock_close">Закрыть</string>
+    <string name="clock_settings">Настройки</string>
+    <string name="tile_label">Часы</string>
+</resources>

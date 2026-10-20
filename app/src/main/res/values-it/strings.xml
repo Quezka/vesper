@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vesper</string>
+    <string name="tagline">Un orologio da comodino per quando il telefono si ricarica</string>
+
+    <string name="channel_wait">In attesa del caricatore</string>
+    <string name="channel_charging">Orologio in carica</string>
+    <string name="waiting_title">Vesper attende il caricatore</string>
+    <string name="waiting_text">L\'orologio si apre quando colleghi il caricatore.</string>
+    <string name="charging_title">In carica</string>
+    <string name="charging_text">Tocca per aprire l\'orologio.</string>
+
+    <string name="sec_status">Orologio in carica</string>
+    <string name="auto_start">Apri l\'orologio quando inizia la ricarica</string>
+    <string name="auto_start_hint">Mantiene una notifica discreta, così Android lascia che Vesper controlli il caricatore.</string>
+    <string name="close_on_unplug">Chiudi quando scolleghi il caricatore</string>
+    <string name="preview_now">Mostra l\'orologio ora</string>
+
+    <string name="sec_access">Permessi</string>
+    <string name="perm_notice_access">Accesso alle notifiche</string>
+    <string name="perm_notice_access_hint">Mostra le tue notifiche sull\'orologio.</string>
+    <string name="perm_overlay">Mostra sopra altre app</string>
+    <string name="perm_overlay_hint">Fa aprire l\'orologio da solo quando colleghi il caricatore.</string>
+    <string name="perm_post">Notifiche</string>
+    <string name="perm_post_hint">L\'avviso di attesa e l\'invito in ricarica.</string>
+    <string name="perm_fullscreen">Avvisi a schermo intero</string>
+    <string name="perm_fullscreen_hint">Apre l\'orologio sopra la schermata di blocco.</string>
+    <string name="perm_battery">Batteria senza limiti</string>
+    <string name="perm_battery_hint">Impedisce al sistema di fermare il controllo del caricatore.</string>
+    <string name="perm_on">Attivo</string>
+    <string name="perm_allow">Consenti</string>
+
+    <string name="sec_clock">Orologio</string>
+    <string name="use24h">Formato 24 ore</string>
+    <string name="seconds">Mostra i secondi</string>
+    <string name="night_tint">Tonalità notturna</string>
+    <string name="night_tint_hint">Cifre ambra soffuse, riposanti al buio.</string>
+    <string name="show_notices">Mostra le notifiche</string>
+    <string name="brightness">Luminosità</string>
+    <string name="hidden_apps_reset">Mostra di nuovo le app nascoste (%d)</string>
+
+    <string name="sec_updates">Aggiornamenti</string>
+    <string name="version_fmt">Versione %s</string>
+    <string name="check_updates">Cerca aggiornamenti</string>
+    <string name="checking">Controllo…</string>
+    <string name="up_to_date">Hai l\'ultima versione.</string>
+    <string name="no_releases">Nessuna release pubblicata finora.</string>
+    <string name="update_available">È disponibile la versione %s</string>
+    <string name="download_install">Scarica e installa</string>
+    <string name="downloading">Download… %d%%</string>
+    <string name="update_failed">Impossibile raggiungere il server degli aggiornamenti.</string>
+    <string name="allow_installs">Consenti installazioni da Vesper</string>
+
+    <string name="battery_charging">In carica</string>
+    <string name="battery_not_charging">A batteria</string>
+    <string name="no_notices">Nessuna nuova notifica</string>
+    <string name="hold_to_hide">Tieni premuta una notifica per nascondere l\'app</string>
+    <string name="clock_close">Chiudi</string>
+    <string name="clock_settings">Impostazioni</string>
+    <string name="tile_label">Orologio</string>
+</resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vesper</string>
+    <string name="tagline">A bedside clock for when your phone charges</string>
+
+    <string name="channel_wait">Waiting for the charger</string>
+    <string name="channel_charging">Charging clock</string>
+    <string name="waiting_title">Vesper is waiting for the charger</string>
+    <string name="waiting_text">The clock opens when you plug in.</string>
+    <string name="charging_title">Charging</string>
+    <string name="charging_text">Tap to open the clock.</string>
+
+    <string name="sec_status">Charging clock</string>
+    <string name="auto_start">Open the clock when charging starts</string>
+    <string name="auto_start_hint">Keeps a quiet notification so Android lets Vesper listen for the charger.</string>
+    <string name="close_on_unplug">Close when unplugged</string>
+    <string name="preview_now">Show the clock now</string>
+
+    <string name="sec_access">Permissions</string>
+    <string name="perm_notice_access">Notification access</string>
+    <string name="perm_notice_access_hint">Shows your notifications on the clock.</string>
+    <string name="perm_overlay">Display over other apps</string>
+    <string name="perm_overlay_hint">Lets the clock open by itself when you plug in.</string>
+    <string name="perm_post">Notifications</string>
+    <string name="perm_post_hint">The waiting notice and the charging prompt.</string>
+    <string name="perm_fullscreen">Full-screen alerts</string>
+    <string name="perm_fullscreen_hint">Opens the clock over the lock screen.</string>
+    <string name="perm_battery">Unrestricted battery</string>
+    <string name="perm_battery_hint">Keeps the charger watcher alive.</string>
+    <string name="perm_on">On</string>
+    <string name="perm_allow">Allow</string>
+
+    <string name="sec_clock">Clock</string>
+    <string name="use24h">24-hour time</string>
+    <string name="seconds">Show seconds</string>
+    <string name="night_tint">Night tint</string>
+    <string name="night_tint_hint">Dim amber digits that are easy on the eyes in the dark.</string>
+    <string name="show_notices">Show notifications</string>
+    <string name="brightness">Brightness</string>
+    <string name="hidden_apps_reset">Show hidden apps again (%d)</string>
+
+    <string name="sec_updates">Updates</string>
+    <string name="version_fmt">Version %s</string>
+    <string name="check_updates">Check for updates</string>
+    <string name="checking">Checking…</string>
+    <string name="up_to_date">You have the latest version.</string>
+    <string name="no_releases">No release has been published yet.</string>
+    <string name="update_available">Version %s is available</string>
+    <string name="download_install">Download and install</string>
+    <string name="downloading">Downloading… %d%%</string>
+    <string name="update_failed">Could not reach the update server.</string>
+    <string name="allow_installs">Allow installs from Vesper</string>
+
+    <string name="battery_charging">Charging</string>
+    <string name="battery_not_charging">On battery</string>
+    <string name="no_notices">No new notifications</string>
+    <string name="hold_to_hide">Hold a notification to hide its app</string>
+    <string name="clock_close">Close</string>
+    <string name="clock_settings">Settings</string>
+    <string name="tile_label">Clock</string>
+</resources>

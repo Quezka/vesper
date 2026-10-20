@@ -1,0 +1,13 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- White crescent moon, one amber star: the evening Vesper is named for. -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M52,30a24,24 0,1 0,26,35A19.5,19.5 0,0 1,52,30z" />
+    <path
+        android:fillColor="#FFF5A524"
+        android:pathData="M72,28l1.9,4.6l4.9,0.4l-3.7,3.2l1.1,4.8l-4.2,-2.6l-4.2,2.6l1.1,-4.8l-3.7,-3.2l4.9,-0.4z" />
+</vector>
