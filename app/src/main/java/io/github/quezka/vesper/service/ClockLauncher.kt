@@ -6,6 +6,8 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.os.BatteryManager
 import android.provider.Settings
 import io.github.quezka.vesper.R
 import io.github.quezka.vesper.ui.ClockActivity
@@ -28,6 +30,12 @@ object ClockLauncher {
             NotificationChannel(CHANNEL_CHARGING, context.getString(R.string.channel_charging), NotificationManager.IMPORTANCE_HIGH)
                 .apply { setSound(null, null); enableVibration(false) }
         )
+    }
+
+    /** Whether a charger or a USB cable is connected right now. */
+    fun isPluggedIn(context: Context): Boolean {
+        val status = context.registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+        return (status?.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) ?: 0) != 0
     }
 
     fun open(context: Context) {

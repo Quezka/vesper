@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.3.1] - 2026-10-26
+- **Starts after a switch-off on the charger.** If the phone was switched off, plugged in and then switched back on,
+  the clock never opened, because the plug-in happened before Vesper was running. Now, when the phone has finished
+  starting and a charger is connected, the clock opens straight away.
+
 ## [0.3.0] - 2026-10-20
 - **Quire on the clock.** With Quire 0.33 or newer on the same phone, the clock shows the focus timer while it runs,
   what is on now or comes next (with a countdown), what starts tomorrow, and how many tasks are due. Allow it once in
