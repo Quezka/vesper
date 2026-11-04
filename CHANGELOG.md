@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.0] - 2026-11-04
+- **Looks like the rest of the suite.** The Manrope typeface, also on the clock, Quire's colours and cards with no border.
+
 ## [0.3.1] - 2026-10-26
 - **Starts after a switch-off on the charger.** If the phone was switched off, plugged in and then switched back on,
   the clock never opened, because the plug-in happened before Vesper was running. Now, when the phone has finished

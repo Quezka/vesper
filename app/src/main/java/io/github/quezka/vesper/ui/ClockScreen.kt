@@ -1,10 +1,8 @@
 package io.github.quezka.vesper.ui
 
 import android.text.format.DateFormat
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -74,7 +72,6 @@ import java.time.ZoneId
 import java.util.Locale
 
 private val CardBg = Color(0xFF18191C)
-private val CardBorder = Color(0xFF2A2C31)
 private val Muted = Color(0xFF9AA0AA)
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -160,9 +157,9 @@ fun ClockScreen(
                         clockText(now, use24h, seconds),
                         color = ink,
                         fontSize = timeSize,
-                        fontWeight = FontWeight.Thin,
+                        fontWeight = FontWeight.ExtraLight,
                         maxLines = 1,
-                        style = androidx.compose.ui.text.TextStyle(fontFeatureSettings = "tnum"),
+                        style = androidx.compose.ui.text.TextStyle(fontFamily = Manrope, fontFeatureSettings = "tnum"),
                     )
                     meridiem(now, use24h)?.let {
                         Text(it, color = soft, fontSize = (timeSize.value / 6).sp, modifier = Modifier.padding(start = 6.dp, bottom = (timeSize.value / 8).dp))
@@ -302,7 +299,6 @@ private fun NoticeCard(row: AppDigest, locale: Locale, onHide: () -> Unit) {
             .fillMaxWidth()
             .clip(RoundedCornerShape(14.dp))
             .background(CardBg)
-            .border(BorderStroke(1.dp, CardBorder), RoundedCornerShape(14.dp))
             .combinedClickable(onClick = {}, onLongClick = onHide)
             .padding(horizontal = 12.dp, vertical = 10.dp),
         verticalAlignment = Alignment.Top,
@@ -342,7 +338,6 @@ private fun Pill(label: String, onClick: () -> Unit) {
         modifier = Modifier
             .clip(RoundedCornerShape(20.dp))
             .background(Color(0xFF202226))
-            .border(BorderStroke(1.dp, CardBorder), RoundedCornerShape(20.dp))
             .clickable(onClick = onClick)
             .padding(horizontal = 14.dp, vertical = 8.dp),
     )

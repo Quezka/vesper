@@ -21,8 +21,8 @@ android {
         applicationId = "io.github.quezka.vesper"
         minSdk = 26
         targetSdk = 35
-        versionCode = 4
-        versionName = "0.3.1"
+        versionCode = 5
+        versionName = "0.4.0"
         // The release feed the in-app updater reads.
         buildConfigField("String", "UPDATE_REPO", "\"Quezka/vesper\"")
     }
@@ -58,6 +58,10 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        unitTests.isReturnDefaultValues = true
+    }
     lint {
         abortOnError = false
     }
@@ -75,5 +79,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.robolectric:robolectric:4.14.1")
+    testImplementation(composeBom)
+    testImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
     testImplementation("org.json:json:20240303")
 }

@@ -9,11 +9,13 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.TextStyle
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -56,16 +58,19 @@ class ClockActivity : ComponentActivity() {
                 })
                 onDispose { unregisterReceiver(receiver) }
             }
-            ClockScreen(
-                prefs = prefs,
-                battery = battery,
-                notices = NoticeFeed.items,
-                onClose = { finish() },
-                onSettings = {
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
-                },
-            )
+            // All the clock's text in the suite's typeface; its colours are its own, always on black.
+            ProvideTextStyle(TextStyle(fontFamily = Manrope)) {
+                ClockScreen(
+                    prefs = prefs,
+                    battery = battery,
+                    notices = NoticeFeed.items,
+                    onClose = { finish() },
+                    onSettings = {
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    },
+                )
+            }
         }
     }
 
