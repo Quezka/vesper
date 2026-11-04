@@ -112,7 +112,7 @@ fun SettingsScreen(
                 val quireInstalled = QuireLink.installed(LocalContext.current)
                 when {
                     !quireInstalled -> Text(stringResource(R.string.quire_missing), color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 13.sp)
-                    quireAllowed -> Text(stringResource(R.string.perm_on), color = Palette.Success, fontWeight = FontWeight.SemiBold)
+                    quireAllowed -> Text(stringResource(R.string.perm_on), color = MaterialTheme.colorScheme.tertiary, fontWeight = FontWeight.SemiBold)
                     else -> Button(onClick = onAskQuire, modifier = Modifier.fillMaxWidth()) { Text(stringResource(R.string.quire_allow)) }
                 }
             }
@@ -162,7 +162,7 @@ private fun UpdatesSection(onOpen: (Intent) -> Unit) {
         when (val s = state) {
             UpdateState.Idle -> {}
             UpdateState.Checking -> Text(stringResource(R.string.checking))
-            UpdateState.Current -> Text(stringResource(R.string.up_to_date), color = Palette.Success)
+            UpdateState.Current -> Text(stringResource(R.string.up_to_date), color = MaterialTheme.colorScheme.tertiary)
             UpdateState.NoRelease -> Text(stringResource(R.string.no_releases))
             UpdateState.Failed -> Text(stringResource(R.string.update_failed), color = MaterialTheme.colorScheme.error)
             is UpdateState.Downloading -> Text(stringResource(R.string.downloading, s.percent))
@@ -248,7 +248,7 @@ private fun PermissionRow(title: String, hint: String, granted: Boolean, onGrant
             Text(hint, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
         if (granted) {
-            Text(stringResource(R.string.perm_on), color = Palette.Success, fontWeight = FontWeight.SemiBold)
+            Text(stringResource(R.string.perm_on), color = MaterialTheme.colorScheme.tertiary, fontWeight = FontWeight.SemiBold)
         } else {
             TextButton(onClick = onGrant, colors = ButtonDefaults.textButtonColors()) { Text(stringResource(R.string.perm_allow)) }
         }

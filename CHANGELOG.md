@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.1] - 2026-11-04
+- The same indigo and colours as the rest of the suite, computer included.
+
 ## [0.4.0] - 2026-11-04
 - **Looks like the rest of the suite.** The Manrope typeface, also on the clock, Quire's colours and cards with no border.
 

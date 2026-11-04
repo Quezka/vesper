@@ -12,26 +12,10 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import io.github.quezka.vesper.R
 
-/** Quire's palette: indigo accent, flat cards with a 1px border and no shadows. */
+/** The clock's two status colours, for its black background (the rest comes from the colour scheme). */
 object Palette {
-    val AccentLight = Color(0xFF5B5BD6)
-    val AccentDark = Color(0xFF8182F0)
-    val Danger = Color(0xFFE5484D)
-    val Success = Color(0xFF30A46C)
+    val Success = Color(0xFF4FE39B)  // on the clock's black
     val Amber = Color(0xFFF5A524)
-
-    val BgLight = Color(0xFFF5F6F8)
-    val SurfaceLight = Color(0xFFFFFFFF)
-    val BorderLight = Color(0xFFE2E4E9)
-    val TextLight = Color(0xFF16181D)
-    val MutedLight = Color(0xFF636A75)
-
-    val BgDark = Color(0xFF111214)
-    val SurfaceDark = Color(0xFF18191C)
-    val RaisedDark = Color(0xFF202226)
-    val BorderDark = Color(0xFF2A2C31)
-    val TextDark = Color(0xFFECEDEF)
-    val MutedDark = Color(0xFF9AA0AA)
 }
 
 val Manrope = FontFamily(
@@ -49,31 +33,31 @@ private val SuiteType = Typography().run {
         labelLarge.copy(fontFamily = Manrope), labelMedium.copy(fontFamily = Manrope), labelSmall.copy(fontFamily = Manrope))
 }
 
-/** The same scheme as Quire's and Cadence's. */
+/** The suite's palette, the same as the desktop's (quezka_ui/theme.py), Quire's and Cadence's. */
 private val Light = lightColorScheme(
-    primary = Color(0xFF5B5BD6), onPrimary = Color.White,
-    primaryContainer = Color(0xFFE6E6FB), onPrimaryContainer = Color(0xFF3B3BA8),
-    secondaryContainer = Color(0xFFE6E6FB), onSecondaryContainer = Color(0xFF3B3BA8),
-    background = Color(0xFFF5F6F8), onBackground = Color(0xFF16181D),
-    surface = Color(0xFFF5F6F8), onSurface = Color(0xFF16181D),
-    surfaceVariant = Color(0xFFF0F1F4), onSurfaceVariant = Color(0xFF636A75),
-    surfaceContainer = Color(0xFFECEEF2), surfaceContainerLow = Color(0xFFFFFFFF),
-    surfaceContainerHigh = Color(0xFFFFFFFF), surfaceContainerHighest = Color(0xFFF0F1F4),
-    outline = Color(0xFFC9CCD3), outlineVariant = Color(0xFFE2E4E9),
-    error = Color(0xFFE5484D), tertiary = Color(0xFF30A46C),
+    primary = Color(0xFF4B4BC8), onPrimary = Color.White,
+    primaryContainer = Color(0xFFDDDCFB), onPrimaryContainer = Color(0xFF23236E),
+    secondaryContainer = Color(0xFFDDDCFB), onSecondaryContainer = Color(0xFF23236E),
+    background = Color(0xFFF6F5FC), onBackground = Color(0xFF0E1116),
+    surface = Color(0xFFF6F5FC), onSurface = Color(0xFF0E1116),
+    surfaceVariant = Color(0xFFE9E8F6), onSurfaceVariant = Color(0xFF3F4654),
+    surfaceContainer = Color(0xFFEEEDF8), surfaceContainerLow = Color(0xFFFFFFFF),
+    surfaceContainerHigh = Color(0xFFFFFFFF), surfaceContainerHighest = Color(0xFFE9E8F6),
+    outline = Color(0xFFB9BEC9), outlineVariant = Color(0xFFDFE2EA),
+    error = Color(0xFFC4262C), tertiary = Color(0xFF1F7A4D),
 )
 
 private val Dark = darkColorScheme(
-    primary = Color(0xFF8182F0), onPrimary = Color.White,
-    primaryContainer = Color(0xFF262747), onPrimaryContainer = Color(0xFFC9CAFB),
-    secondaryContainer = Color(0xFF262747), onSecondaryContainer = Color(0xFFC9CAFB),
-    background = Color(0xFF111214), onBackground = Color(0xFFECEDEF),
-    surface = Color(0xFF111214), onSurface = Color(0xFFECEDEF),
-    surfaceVariant = Color(0xFF202226), onSurfaceVariant = Color(0xFF9BA1AB),
-    surfaceContainer = Color(0xFF141517), surfaceContainerLow = Color(0xFF18191C),
-    surfaceContainerHigh = Color(0xFF18191C), surfaceContainerHighest = Color(0xFF202226),
-    outline = Color(0xFF3A3D44), outlineVariant = Color(0xFF2A2C31),
-    error = Color(0xFFFF6369), tertiary = Color(0xFF3DD68C),
+    primary = Color(0xFF9A9BFF), onPrimary = Color(0xFF0E0F11),
+    primaryContainer = Color(0xFF35366B), onPrimaryContainer = Color(0xFFE2E2FF),
+    secondaryContainer = Color(0xFF35366B), onSecondaryContainer = Color(0xFFE2E2FF),
+    background = Color(0xFF111119), onBackground = Color(0xFFF4F5F7),
+    surface = Color(0xFF111119), onSurface = Color(0xFFF4F5F7),
+    surfaceVariant = Color(0xFF28283A), onSurfaceVariant = Color(0xFFC3C8D2),
+    surfaceContainer = Color(0xFF16161F), surfaceContainerLow = Color(0xFF1B1B25),
+    surfaceContainerHigh = Color(0xFF1B1B25), surfaceContainerHighest = Color(0xFF28283A),
+    outline = Color(0xFF4A4E57), outlineVariant = Color(0xFF2C2F35),
+    error = Color(0xFFFF7B80), tertiary = Color(0xFF4FE39B),
 )
 
 @Composable
