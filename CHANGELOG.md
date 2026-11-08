@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.0] - 2026-11-08
+- **The suite's new look:** brighter colours and glass (see-through cards over a soft wash of colour) in Vesper's
+  settings, as in Quire and the other apps. The bedside clock itself stays dark and plain, for the night.
+
 ## [0.3.1] - 2026-10-26
 - **Starts after a switch-off on the charger.** If the phone was switched off, plugged in and then switched back on,
   the clock never opened, because the plug-in happened before Vesper was running. Now, when the phone has finished

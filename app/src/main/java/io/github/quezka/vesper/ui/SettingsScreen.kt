@@ -2,6 +2,8 @@ package io.github.quezka.vesper.ui
 
 import android.content.Intent
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -80,7 +82,8 @@ fun SettingsScreen(
     var brightness by remember { mutableStateOf(prefs.brightness.toFloat()) }
     var hidden by remember { mutableStateOf(prefs.hiddenApps) }
 
-    Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+    Surface(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).background(Glass.wash()),
+        color = Color.Transparent) {
         Column(
             Modifier.safeDrawingPadding().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 12.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -224,9 +227,9 @@ private fun Section(title: String, content: @Composable () -> Unit) {
             color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(start = 4.dp),
         )
         Card(
-            shape = RoundedCornerShape(14.dp),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline),
+            shape = RoundedCornerShape(18.dp),
+            colors = CardDefaults.cardColors(containerColor = Glass.surface()),
+            border = Glass.edge(),
             elevation = CardDefaults.cardElevation(0.dp),
         ) {
             Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) { content() }
