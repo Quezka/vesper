@@ -1,6 +1,7 @@
 package io.github.quezka.vesper.ui
 
 import android.content.Intent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -79,7 +80,9 @@ fun SettingsScreen(
     var brightness by remember { mutableStateOf(prefs.brightness.toFloat()) }
     var hidden by remember { mutableStateOf(prefs.hiddenApps) }
 
-    Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+    // Glass, as across the suite: a soft wash of colour behind see-through cards. The clock itself stays plain black.
+    Surface(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).background(Glass.wash()),
+        color = androidx.compose.ui.graphics.Color.Transparent) {
         Column(
             Modifier.safeDrawingPadding().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 12.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -219,7 +222,8 @@ private fun UpdatesSection(onOpen: (Intent) -> Unit) {
 private fun Section(title: String, content: @Composable () -> Unit) {
     Card(
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
+        colors = CardDefaults.cardColors(containerColor = Glass.surface()),
+        border = Glass.edge(),
         elevation = CardDefaults.cardElevation(0.dp),
     ) {
         Column(Modifier.fillMaxWidth().padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {

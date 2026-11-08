@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.2] - 2026-11-08
+- **Brighter colours and the glass look**, as across the suite: Vesper's settings sit on a soft wash of colour, with
+  see-through cards. The bedside clock itself stays plain black, for the night.
+
 ## [0.4.1] - 2026-11-04
 - The same indigo and colours as the rest of the suite, computer included.
 
