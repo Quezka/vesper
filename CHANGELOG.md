@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.4.3] - 2026-11-09
+- The settings are plain again: no colour wash behind them, solid cards, as the rest of the suite now does glass
+  (only on the bars and menus that float over content).
+
 ## [0.4.2] - 2026-11-08
 - **Brighter colours and the glass look**, as across the suite: Vesper's settings sit on a soft wash of colour, with
   see-through cards. The bedside clock itself stays plain black, for the night.

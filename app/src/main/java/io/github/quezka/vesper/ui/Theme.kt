@@ -62,40 +62,6 @@ private val Dark = darkColorScheme(
     error = Color(0xFFFF7B80), tertiary = Color(0xFF4ADE80),
 )
 
-/** The pink glow at the far corner of the glass wash, the same as the desktop kit's `GLOW`. */
-val Glow = Color(0xFFEC4899)
-
-/**
- * Liquid glass on top of Material 3, like the desktop suite: the screen shows a soft colour wash and surfaces are
- * translucent with a bright top edge. Text keeps its solid colours, so its contrast never drops.
- */
-object Glass {
-    /** How opaque a frosted surface is. */
-    const val tint = 0.72f
-
-    @Composable
-    fun edge(): androidx.compose.foundation.BorderStroke {
-        val dark = MaterialTheme.colorScheme.background.luminance() < 0.5f
-        return androidx.compose.foundation.BorderStroke(1.dp, androidx.compose.ui.graphics.Brush.verticalGradient(
-            listOf(Color.White.copy(alpha = if (dark) 0.16f else 0.95f), Color.White.copy(alpha = if (dark) 0.04f else 0.35f))))
-    }
-
-    /** The colour wash behind everything: the accent from the top left, a warm glow at the bottom right. */
-    @Composable
-    fun wash(): androidx.compose.ui.graphics.Brush {
-        val c = MaterialTheme.colorScheme
-        val dark = c.background.luminance() < 0.5f
-        return androidx.compose.ui.graphics.Brush.linearGradient(listOf(
-            androidx.compose.ui.graphics.lerp(c.background, c.primary, if (dark) 0.20f else 0.16f),
-            c.background,
-            androidx.compose.ui.graphics.lerp(c.background, Glow, if (dark) 0.13f else 0.10f)))
-    }
-
-    /** A frosted surface colour for cards and bars. */
-    @Composable
-    fun surface(): Color = MaterialTheme.colorScheme.surfaceContainerLow.copy(alpha = tint)
-}
-
 @Composable
 fun VesperTheme(content: @Composable () -> Unit) {
     MaterialTheme(colorScheme = if (isSystemInDarkTheme()) Dark else Light, typography = SuiteType, content = content)
