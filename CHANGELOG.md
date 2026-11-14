@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.0] - 2026-11-14
+
+- The suite's new **Material 3 tonal** colours: a soft tonal background and darker text.
+
 ## [0.5.0] - 2026-11-09
 
 The suite's new shared look (one design system for every app, `suite-rs/design/tokens.json`):
